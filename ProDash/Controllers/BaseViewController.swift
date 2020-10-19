@@ -9,11 +9,12 @@ import UIKit
 import Logging
 
 class BaseViewController: UIViewController, Describable {
-
+    var services: ServiceLocator?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        Log.message("\(logDescription) did load", as: .info)
+        services?.logger.message("\(logDescription) did load", as: .info)
     }
 
 

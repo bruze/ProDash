@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NavigationBar" customModule="ProDash" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XnZ-gX-gik">
+                    <rect key="frame" x="0.0" y="0.0" width="50" height="44"/>
+                    <accessibility key="accessibilityConfiguration" identifier="searchButton"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="2Iv-Uv-tZF"/>
+                    </constraints>
+                    <state key="normal" image="magnifyingglass.circle" catalog="system"/>
+                    <connections>
+                        <action selector="search" destination="-1" eventType="touchUpInside" id="pGR-hs-Zeh"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vua-8q-93J">
+                    <rect key="frame" x="364" y="0.0" width="50" height="44"/>
+                    <state key="normal" image="star.fill" catalog="system"/>
+                    <connections>
+                        <action selector="favorites" destination="-1" eventType="touchUpInside" id="aZQ-Pe-Zoj"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="0.65097923800000002" blue="0.2352579195" alpha="1" colorSpace="calibratedRGB"/>
+            <accessibility key="accessibilityConfiguration" identifier="navigationBar">
+                <bool key="isElement" value="YES"/>
+            </accessibility>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="vua-8q-93J" secondAttribute="trailing" id="4mJ-Kk-79m"/>
+                <constraint firstItem="XnZ-gX-gik" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="9v4-pZ-kZb"/>
+                <constraint firstAttribute="bottom" secondItem="vua-8q-93J" secondAttribute="bottom" id="MU3-YS-uLS"/>
+                <constraint firstItem="vua-8q-93J" firstAttribute="width" secondItem="XnZ-gX-gik" secondAttribute="width" id="cVQ-KZ-2QN"/>
+                <constraint firstItem="vua-8q-93J" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="hyq-sz-SoN"/>
+                <constraint firstItem="XnZ-gX-gik" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="pK1-0j-In9"/>
+                <constraint firstAttribute="bottom" secondItem="XnZ-gX-gik" secondAttribute="bottom" id="sWD-0f-Gle"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="139" y="52"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="magnifyingglass.circle" catalog="system" width="128" height="121"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
+    </resources>
+</document>

@@ -9,17 +9,23 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    var coordinator: MainCoordinator?
+    var mainCoordinator: Coordinator?
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         /// Create the main navigation controller and set into our coordinator so that it can display view controllers
-        let navigationController = UINavigationController()
-        coordinator = MainCoordinator(navigationController: navigationController)
+        let navigationController: UINavigationController = {
+            if let initial = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController() as? UINavigationController {
+                return initial
+            } else {
+                return UINavigationController()
+            }
+        }()
+        mainCoordinator = MainCoordinator(navigationController: navigationController)
 
         /// Tell the coordinator to take over control
-        coordinator?.start()
+        //mainCoordinator?.start()
 
         /// Create a basic UIWindow and activate it
         window = UIWindow(frame: UIScreen.main.bounds)

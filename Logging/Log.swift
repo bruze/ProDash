@@ -7,30 +7,24 @@
 
 import os
 
-public struct Log {
-    public enum LoggingLevel {
-        case debug
-        case info
-        case verbose
-        case warning
-        case error
-    }
-
-    public static func message(_ message: String, as level: LoggingLevel) {
-        let log = Logger()
+public struct Log: LoggingService {
+    private var _logger = Logger()
+    public init() {}
+    
+    public func message(_ message: String, as level: LoggingLevel) {
         switch level {
         case .debug:
             #if DEBUG
-            log.debug("🔍DEBUG: \(message)")
+            _logger.debug("🔍DEBUG: \(message)")
             #endif
         case .info:
-            log.info("ℹ️INFO: \(message)")
+            _logger.info("ℹ️INFO: \(message)")
         case .verbose:
-            log.notice("⚠️NOTICE: \(message)")
+            _logger.notice("⚠️NOTICE: \(message)")
         case .warning:
-            log.warning("❌ERROR: \(message)")
+            _logger.warning("❌ERROR: \(message)")
         case .error:
-            log.error("⛔️FAULT: \(message)")
+            _logger.error("⛔️FAULT: \(message)")
         }
     }
 }

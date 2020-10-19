@@ -2,35 +2,33 @@
 //  MainCoordinator.swift
 //  ProDash
 //
-//  Created by Bruno Garelli on 10/15/20.
+//  Created by Bruno Garelli on 10/18/20.
 //
 
 import UIKit
 
+extension Notification.Name {
+    static let homeFlowExited = Notification.Name(rawValue: "homeFlowExited")
+}
+
 final class MainCoordinator: NSObject, Coordinator {
+    let flowName = "Main"
+    //MARK: Member
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
-
+    var services: ServiceLocator? = DefaultServiceLocator()
+    //MARK: Setup
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-    }
-
-    func start() {
+        super.init()
         navigationController.delegate = self
-        if let vc = HomeController.create() {
-            vc.coordinator = self
-            navigationController.pushViewController(vc, animated: false)
-        }
+        start()
     }
-    
-    func childDidFinish(_ child: Coordinator?) {
-        for (index, coordinator) in childCoordinators.enumerated() {
-            if coordinator === child {
-                childCoordinators.remove(at: index)
-                break
-            }
-        }
-        navigationController.popToRootViewController(animated: true)
+    //MARK: Action
+    private func start() {
+        let home = HomeCoordinator(navigationController: navigationController, services: services)
+        childCoordinators.append(home)
+        home.parentCoordinator = self
     }
 }
 
@@ -44,10 +42,8 @@ extension MainCoordinator: UINavigationControllerDelegate {
             return
         }
 
-        /*if let amountViewController = fromViewController as? AmountInputController {
-            childDidFinish(amountViewController.coordinator)
-        } else if let historyController = fromViewController as? HistoryController {
-            childDidFinish(historyController.coordinator)
-        }*/
+        if let coordinated = fromViewController as? FlowStarter, let coordinator = coordinated.anyCoordinator as? Coordinator {
+            childDidFinish(coordinator)
+        }
     }
 }
