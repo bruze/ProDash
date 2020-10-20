@@ -10,8 +10,10 @@ import Persistence
 import Logging
 import Utilities
 import Model
+import Networking
 
 public protocol ServiceLocator {
     var logger: LoggingService { get }
     var userManager: UserManager { get }
+    var networkRouter: NetworkRouter { get }
 }

@@ -13,10 +13,12 @@ public final class User: Object, Model {
         case guest
         case logged
     }
-    
+    //MARK: Members
     @objc public var alias: String = ""
     var state = StateMachine<UserState>(initialState: .guest)
     public var currentState: UserState { return state.currentState }
+    public let favorites = List<Product>()
+    public let lastViewed  = List<Product>()
     //MARK: Setup
     public override class func primaryKey() -> String? {
         return "alias"

@@ -36,7 +36,20 @@ public final class RealmUserManager: UserManager {
         NotificationCenter.default.post(name: .userLogged, object: nil)
     }
     
-    public func save(user: User) {
+    public func save(user: User, setCurrent: Bool = false) {
         RealmRepository().set(user)
+        if setCurrent { currentUser = user }
+    }
+    
+    public func addFavorite(_ product: Product) {
+        guard let user = currentUser else { return }
+        user.favorites.append(product)
+        save(user: user)
+    }
+    
+    public func addViewed(_ product: Product) {
+        guard let user = currentUser else { return }
+        user.lastViewed.append(product)
+        save(user: user)
     }
 }

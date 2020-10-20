@@ -9,8 +9,10 @@ import Persistence
 import Logging
 import Utilities
 import Model
+import Networking
 
 struct DefaultServiceLocator: ServiceLocator {
     var logger: LoggingService = Log()
     var userManager: UserManager = RealmUserManager()
+    var networkRouter: NetworkRouter = URLSessionRouter()
 }
