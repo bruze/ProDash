@@ -45,7 +45,7 @@ target 'ProDash' do
   use_frameworks!
 
   # Pods for ProDash
-
+  pod 'Kingfisher'
   target 'ProDashTests' do
     inherit! :search_paths
     # Pods for testing

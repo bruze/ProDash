@@ -5,7 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,37 +16,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gPf-KY-HAq">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" prefetchingEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPf-KY-HAq">
+                                <rect key="frame" x="5" y="44" width="404" height="782"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="umE-jp-af7">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="umE-jp-af7">
+                                    <size key="itemSize" width="150" height="250"/>
+                                    <size key="headerReferenceSize" width="50" height="50"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="baj-Vo-otO">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="R8Q-S2-lhh">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                    </collectionViewCell>
-                                </cells>
+                                <cells/>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="ProductsHeader" id="AtM-gJ-VoX" customClass="ProductsHeader" customModule="ProDash" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="404" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionReusableView>
                             </collectionView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="c8n-QW-9Dd">
+                                <rect key="frame" x="188.5" y="416.5" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eL9-Oy-j8J"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="eL9-Oy-j8J" firstAttribute="bottom" secondItem="gPf-KY-HAq" secondAttribute="bottom" id="4MM-E8-1bd"/>
-                            <constraint firstItem="eL9-Oy-j8J" firstAttribute="trailing" secondItem="gPf-KY-HAq" secondAttribute="trailing" id="5pF-z5-bmR"/>
-                            <constraint firstItem="gPf-KY-HAq" firstAttribute="leading" secondItem="eL9-Oy-j8J" secondAttribute="leading" id="MlJ-7A-KxJ"/>
+                            <constraint firstAttribute="bottom" secondItem="gPf-KY-HAq" secondAttribute="bottom" constant="70" id="4MM-E8-1bd"/>
+                            <constraint firstItem="eL9-Oy-j8J" firstAttribute="trailing" secondItem="gPf-KY-HAq" secondAttribute="trailing" constant="5" id="5pF-z5-bmR"/>
+                            <constraint firstItem="c8n-QW-9Dd" firstAttribute="bottom" secondItem="gPf-KY-HAq" secondAttribute="bottom" id="E7Y-JI-T1T"/>
+                            <constraint firstItem="c8n-QW-9Dd" firstAttribute="centerY" secondItem="gPf-KY-HAq" secondAttribute="centerY" id="GwA-f6-I1G"/>
+                            <constraint firstItem="gPf-KY-HAq" firstAttribute="leading" secondItem="eL9-Oy-j8J" secondAttribute="leading" constant="5" id="MlJ-7A-KxJ"/>
                             <constraint firstItem="gPf-KY-HAq" firstAttribute="top" secondItem="eL9-Oy-j8J" secondAttribute="top" id="ehE-ib-KIO"/>
+                            <constraint firstItem="c8n-QW-9Dd" firstAttribute="centerX" secondItem="gPf-KY-HAq" secondAttribute="centerX" id="nIc-4n-dF6"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="E7Y-JI-T1T"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="c8n-QW-9Dd" id="v90-RD-5Ms"/>
+                        <outlet property="activityIndicatorAtBottom" destination="E7Y-JI-T1T" id="ytb-c0-4AT"/>
+                        <outlet property="activityIndicatorAtMiddle" destination="GwA-f6-I1G" id="P3f-gB-inj"/>
                         <outlet property="products" destination="gPf-KY-HAq" id="qQZ-WV-xCB"/>
                     </connections>
                 </viewController>

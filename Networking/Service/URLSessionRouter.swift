@@ -27,6 +27,7 @@ public final class URLSessionRouter/*<EndpointType: Endpoint>*/: NetworkRouter {
     }
     
     public func fetch(_ route: Endpoint, completion: @escaping NetworkRouterModelCompletion) {
+        cancel()
         request(route) { data, response, error in
             if data == nil { return completion([], nil, error) }
             if let JSONObject = try! JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any] {

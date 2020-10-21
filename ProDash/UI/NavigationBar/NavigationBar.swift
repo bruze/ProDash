@@ -10,6 +10,9 @@ import UIKit
 enum NavigationBarAction {
     case search
     case favorites
+    case dashboard
+    case query(text: String)
+    case cleanQuery
 }
 
 protocol NavigationBarDelegate {
@@ -17,24 +20,67 @@ protocol NavigationBarDelegate {
 }
 
 final class NavigationBar: UINavigationBar {
+    @IBOutlet weak var lens: UIButton!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var favoritesButton: UIButton!
+    @IBOutlet weak var home: UIButton!
     //MARK: Members
     var customDelegate: NavigationBarDelegate?
     //MARK: Setup
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         xibSetup()
+        setup()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         xibSetup()
+        setup()
+    }
+    
+    private func setup() {
+        searchBar.searchTextField.delegate = self
     }
     //MARK: Action
     @IBAction func search() {
+        lens.isHidden = true
+        home.isHidden = false
+        searchBar.isHidden = false
+        searchBar.becomeFirstResponder()
         customDelegate?.sent(action: .search)
     }
 
     @IBAction func favorites() {
         customDelegate?.sent(action: .favorites)
+    }
+    
+    @IBAction func dashboard() {
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        searchBar.isHidden = true
+        home.isHidden = true
+        lens.isHidden = false
+        customDelegate?.sent(action: .cleanQuery)
+        customDelegate?.sent(action: .dashboard)
+    }
+}
+
+extension NavigationBar: UITextFieldDelegate {
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        customDelegate?.sent(action: .cleanQuery)
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let textFieldText = textField.text  {
+            let finalText = (textFieldText as NSString).replacingCharacters(in: range, with: string)
+            if finalText.count > 2 {
+                customDelegate?.sent(action: .query(text: finalText))
+            } else {
+                customDelegate?.sent(action: .cleanQuery)
+            }
+        }
+        return true
     }
 }

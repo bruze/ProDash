@@ -6,12 +6,26 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NavigationBar" customModule="ProDash" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NavigationBar" customModule="ProDash" customModuleProvider="target">
+            <connections>
+                <outlet property="favoritesButton" destination="vua-8q-93J" id="4x9-vg-ECE"/>
+                <outlet property="home" destination="AUU-c9-O9Q" id="sPL-b8-tmp"/>
+                <outlet property="lens" destination="XnZ-gX-gik" id="YTT-fg-hGj"/>
+                <outlet property="searchBar" destination="lGN-il-GDc" id="u43-F6-Fl1"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AUU-c9-O9Q">
+                    <rect key="frame" x="0.0" y="0.0" width="50" height="44"/>
+                    <state key="normal" image="house.fill" catalog="system"/>
+                    <connections>
+                        <action selector="dashboard" destination="-1" eventType="touchUpInside" id="71f-om-GfG"/>
+                    </connections>
+                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XnZ-gX-gik">
                     <rect key="frame" x="0.0" y="0.0" width="50" height="44"/>
                     <accessibility key="accessibilityConfiguration" identifier="searchButton"/>
@@ -23,6 +37,13 @@
                         <action selector="search" destination="-1" eventType="touchUpInside" id="pGR-hs-Zeh"/>
                     </connections>
                 </button>
+                <searchBar hidden="YES" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="lGN-il-GDc">
+                    <rect key="frame" x="50" y="-6" width="314" height="56"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="F7e-T2-saF"/>
+                    </connections>
+                </searchBar>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vua-8q-93J">
                     <rect key="frame" x="364" y="0.0" width="50" height="44"/>
                     <state key="normal" image="star.fill" catalog="system"/>
@@ -36,12 +57,19 @@
                 <bool key="isElement" value="YES"/>
             </accessibility>
             <constraints>
+                <constraint firstItem="lGN-il-GDc" firstAttribute="leading" secondItem="XnZ-gX-gik" secondAttribute="trailing" id="2fD-XG-7m4"/>
                 <constraint firstAttribute="trailing" secondItem="vua-8q-93J" secondAttribute="trailing" id="4mJ-Kk-79m"/>
                 <constraint firstItem="XnZ-gX-gik" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="9v4-pZ-kZb"/>
+                <constraint firstItem="AUU-c9-O9Q" firstAttribute="top" secondItem="XnZ-gX-gik" secondAttribute="top" id="GGj-PE-Wkn"/>
+                <constraint firstItem="lGN-il-GDc" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="HHc-0S-55u"/>
                 <constraint firstAttribute="bottom" secondItem="vua-8q-93J" secondAttribute="bottom" id="MU3-YS-uLS"/>
+                <constraint firstItem="vua-8q-93J" firstAttribute="leading" secondItem="lGN-il-GDc" secondAttribute="trailing" id="NTM-x4-xx4"/>
+                <constraint firstItem="AUU-c9-O9Q" firstAttribute="leading" secondItem="XnZ-gX-gik" secondAttribute="leading" id="Qgl-wZ-gWQ"/>
+                <constraint firstItem="AUU-c9-O9Q" firstAttribute="bottom" secondItem="XnZ-gX-gik" secondAttribute="bottom" id="bMg-Hx-HbL"/>
                 <constraint firstItem="vua-8q-93J" firstAttribute="width" secondItem="XnZ-gX-gik" secondAttribute="width" id="cVQ-KZ-2QN"/>
                 <constraint firstItem="vua-8q-93J" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="hyq-sz-SoN"/>
                 <constraint firstItem="XnZ-gX-gik" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="pK1-0j-In9"/>
+                <constraint firstItem="AUU-c9-O9Q" firstAttribute="trailing" secondItem="XnZ-gX-gik" secondAttribute="trailing" id="ppi-hx-ot9"/>
                 <constraint firstAttribute="bottom" secondItem="XnZ-gX-gik" secondAttribute="bottom" id="sWD-0f-Gle"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -49,6 +77,7 @@
         </view>
     </objects>
     <resources>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="magnifyingglass.circle" catalog="system" width="128" height="121"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
     </resources>

@@ -15,6 +15,9 @@ final class DashboardCoordinator: NSObject, Coordinator {
     var navigationController: UINavigationController
     weak var parentCoordinator: MainCoordinator?
     weak var dashboardController: DashboardController?
+    private var search: SearchCoordinator? {
+        return childCoordinators.filter({ $0 is SearchCoordinator }).first as? SearchCoordinator
+    }
     //MARK: Setup
     init(navigationController: UINavigationController, services: ServiceLocator?) {
         self.navigationController = navigationController
@@ -49,9 +52,19 @@ extension DashboardCoordinator: NavigationBarDelegate {
     func sent(action: NavigationBarAction) {
         switch action {
         case .search:
-            startSearch()
+            search == nil ? startSearch(): dashboardController?.show(SearchController.self)
         case .favorites:
             break
+        case .query(let text):
+            if let searchController = dashboardController?.getContainedController(SearchController.self) {
+                searchController.query(text)
+            }
+        case .dashboard:
+            dashboardController?.hideAllContained()
+        case .cleanQuery:
+            if let searchController = dashboardController?.getContainedController(SearchController.self) {
+                searchController.cleanQuery()
+            }
         }
     }
 }
