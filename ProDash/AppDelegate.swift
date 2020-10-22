@@ -24,9 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }()
         mainCoordinator = MainCoordinator(navigationController: navigationController)
 
-        /// Tell the coordinator to take over control
-        //mainCoordinator?.start()
-
         /// Create a basic UIWindow and activate it
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = navigationController

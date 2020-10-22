@@ -35,16 +35,29 @@
                                 <color key="textColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rQ1-X0-A3H">
+                                <rect key="frame" x="139" y="0.0" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="9li-PH-S2a"/>
+                                    <constraint firstAttribute="height" constant="25" id="MUh-vY-AOl"/>
+                                </constraints>
+                                <state key="normal" image="star" catalog="system"/>
+                                <connections>
+                                    <action selector="toggleFavourite:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Hwo-UW-5bu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="qwr-Cw-vKP" secondAttribute="bottom" constant="5" id="5uo-Tk-wYT"/>
+                            <constraint firstAttribute="trailing" secondItem="rQ1-X0-A3H" secondAttribute="trailing" id="6XT-xG-BHq"/>
                             <constraint firstItem="qwr-Cw-vKP" firstAttribute="leading" secondItem="902-NR-rZx" secondAttribute="leading" constant="5" id="I27-14-juj"/>
                             <constraint firstItem="yHK-fM-YYe" firstAttribute="leading" secondItem="qwr-Cw-vKP" secondAttribute="trailing" constant="5" id="KTa-Dr-vAj"/>
                             <constraint firstAttribute="trailing" secondItem="yHK-fM-YYe" secondAttribute="trailing" constant="5" id="UXQ-nJ-6Jq"/>
                             <constraint firstItem="qwr-Cw-vKP" firstAttribute="top" secondItem="902-NR-rZx" secondAttribute="top" constant="5" id="afq-kn-Pf8"/>
                             <constraint firstItem="yHK-fM-YYe" firstAttribute="top" secondItem="902-NR-rZx" secondAttribute="top" constant="5" id="p7n-Fm-Gfq"/>
                             <constraint firstAttribute="bottom" secondItem="yHK-fM-YYe" secondAttribute="bottom" constant="5" id="roO-bg-eAU"/>
+                            <constraint firstItem="rQ1-X0-A3H" firstAttribute="top" secondItem="902-NR-rZx" secondAttribute="top" id="yxD-VE-9MZ"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -71,10 +84,14 @@
                 <constraint firstItem="902-NR-rZx" firstAttribute="bottom" secondItem="gTV-IL-0wX" secondAttribute="bottom" constant="-3" id="t2a-1A-7vX"/>
             </constraints>
             <connections>
+                <outlet property="favouriteButton" destination="rQ1-X0-A3H" id="0G7-S9-Par"/>
                 <outlet property="thumb" destination="qwr-Cw-vKP" id="vda-tN-HlL"/>
                 <outlet property="title" destination="yHK-fM-YYe" id="8Fr-MS-lKs"/>
             </connections>
             <point key="canvasLocation" x="139" y="88"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="star" catalog="system" width="128" height="116"/>
+    </resources>
 </document>

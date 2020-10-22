@@ -26,9 +26,15 @@ final class MainCoordinator: NSObject, Coordinator {
     }
     //MARK: Action
     private func start() {
-        let home = HomeCoordinator(navigationController: navigationController, services: services)
+        /*let home = HomeCoordinator(navigationController: navigationController, services: services)
         childCoordinators.append(home)
-        home.parentCoordinator = self
+        home.parentCoordinator = self*/
+        services?.userManager.logUser(with: "")
+        let dashboard = DashboardCoordinator(navigationController: navigationController, services: services)
+        childCoordinators.append(dashboard)
+        dashboard.parentCoordinator = self
+        dashboard.start()
+        navigationController.navigationBar.isHidden = false
     }
 }
 

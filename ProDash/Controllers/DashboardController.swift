@@ -8,14 +8,18 @@
 import Model
 import UIKit
 import Combine
-
+/**
+    It's a controller's container that engages and handles the different
+    flows in the app. Thus it's not asscoiated view model
+ */
 final class DashboardController: BaseViewController, ControllerType {
-    @IBOutlet weak var container: UIView!
+    //MARK: Members
     static let identifier = "Dashboard"
     static let storyboardId = "Home"
-    
     var coordinator: DashboardCoordinator?
-    
+    //MARK: Outlet
+    @IBOutlet weak var container: UIView!
+    //MARK: API
     func contain(_ controller: UIViewController) {
         addChild(controller)
         container.addSubview(controller.view)
@@ -27,7 +31,12 @@ final class DashboardController: BaseViewController, ControllerType {
     }
     
     func show<T>(_ type: T.Type) where T: ControllerType {
-        (getContainedController(type) as? UIViewController)?.view?.isHidden = false
+        hideAllContained()
+        let controller = (getContainedController(type) as? UIViewController)
+        if let favorites = controller as? FavoritesController {
+            favorites.updateModel()
+        }
+        controller?.view?.isHidden = false
     }
     
     func hideAllContained() {

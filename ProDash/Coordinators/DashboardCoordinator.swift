@@ -8,15 +8,19 @@
 import UIKit
 
 final class DashboardCoordinator: NSObject, Coordinator {
-    var flowName = "Dashboard"
     //MARK: Members
+    var flowName = "Dashboard"
     var services: ServiceLocator?
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     weak var parentCoordinator: MainCoordinator?
-    weak var dashboardController: DashboardController?
+    weak var dashboardController: DashboardController? /// Handy to send controllers-level commands as it's a bridge between flows
+    /// Child coordinators/ flows; this avoids duplicating childs/ controllers
     private var search: SearchCoordinator? {
         return childCoordinators.filter({ $0 is SearchCoordinator }).first as? SearchCoordinator
+    }
+    private var favorites: FavoritesCoordinator? {
+        return childCoordinators.filter({ $0 is FavoritesCoordinator }).first as? FavoritesCoordinator
     }
     //MARK: Setup
     init(navigationController: UINavigationController, services: ServiceLocator?) {
@@ -27,7 +31,7 @@ final class DashboardCoordinator: NSObject, Coordinator {
         NotificationCenter.default.addObserver(self, selector: #selector(start), name: .homeFlowExited, object: nil)
     }
     //MARK: Action
-    @objc private func start() {
+    @objc func start() {
         if let vc = DashboardController.create(parentCoordinator?.services) {
             dashboardController = vc
             vc.coordinator = self
@@ -37,10 +41,16 @@ final class DashboardCoordinator: NSObject, Coordinator {
     
     private func startSearch() {
         let search = SearchCoordinator(navigationController: navigationController, services: services)
-        /// Home is a temporal flow, now Dashboard is the first child of Main
         search.parentCoordinator = self
         childCoordinators.append(search)
         search.start()
+    }
+    
+    private func startFavorites() {
+        let favorites = FavoritesCoordinator(navigationController: navigationController, services: services)
+        favorites.parentCoordinator = self
+        childCoordinators.append(favorites)
+        favorites.start()
     }
     
     func contain(_ controller: UIViewController) {
@@ -54,7 +64,7 @@ extension DashboardCoordinator: NavigationBarDelegate {
         case .search:
             search == nil ? startSearch(): dashboardController?.show(SearchController.self)
         case .favorites:
-            break
+            favorites == nil ? startFavorites(): dashboardController?.show(FavoritesController.self)
         case .query(let text):
             if let searchController = dashboardController?.getContainedController(SearchController.self) {
                 searchController.query(text)

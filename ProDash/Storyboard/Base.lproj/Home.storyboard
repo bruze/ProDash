@@ -143,6 +143,14 @@ Puedes usar un alias para guardar tus favoritos o ingresar como invitado</string
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I7a-jr-vao">
+                                <rect key="frame" x="20" y="162.5" width="374" height="128.5"/>
+                                <string key="text">Bienvenid@ al dashboard
+Desde aquí podrás acceder a las distintas secciones de la app usando los botones de la barra de navegación superior</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d6b-UI-19g">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <connections>
@@ -157,6 +165,9 @@ Puedes usar un alias para guardar tus favoritos o ingresar como invitado</string
                             <constraint firstItem="Acx-Hn-dLA" firstAttribute="bottom" secondItem="d6b-UI-19g" secondAttribute="bottom" id="1ab-D6-QP9"/>
                             <constraint firstItem="Acx-Hn-dLA" firstAttribute="trailing" secondItem="d6b-UI-19g" secondAttribute="trailing" id="8BS-ER-3nV"/>
                             <constraint firstItem="d6b-UI-19g" firstAttribute="leading" secondItem="Acx-Hn-dLA" secondAttribute="leading" id="CGQ-d2-MZy"/>
+                            <constraint firstItem="I7a-jr-vao" firstAttribute="centerX" secondItem="Acx-Hn-dLA" secondAttribute="centerX" id="ZWr-Xz-CfP"/>
+                            <constraint firstItem="Acx-Hn-dLA" firstAttribute="leading" secondItem="I7a-jr-vao" secondAttribute="leading" constant="-20" id="jxO-eS-jJe"/>
+                            <constraint firstItem="I7a-jr-vao" firstAttribute="centerY" secondItem="Acx-Hn-dLA" secondAttribute="centerY" multiplier="1/2" id="qJj-L9-fuf"/>
                         </constraints>
                     </view>
                     <connections>

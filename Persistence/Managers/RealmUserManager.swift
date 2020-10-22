@@ -6,6 +6,7 @@
 //
 
 import Model
+import RealmSwift
 
 public extension Notification.Name {
     static let userLogged = Notification.Name(rawValue: "userLogged")
@@ -37,19 +38,46 @@ public final class RealmUserManager: UserManager {
     }
     
     public func save(user: User, setCurrent: Bool = false) {
-        RealmRepository().set(user)
+        if !user.alias.isEmpty {
+            RealmRepository().set(user)
+        }
         if setCurrent { currentUser = user }
     }
     
-    public func addFavorite(_ product: Product) {
+    public func addFavourite(_ product: Product) {
         guard let user = currentUser else { return }
-        user.favorites.append(product)
-        save(user: user)
+        let realm = try! Realm()
+        //realm.beginWrite()
+        try! realm.write {
+            user.favorites.append(product)
+        }
+        
+        //try! realm.commitWrite()
+        //save(user: user)
+    }
+    
+    public func removeFavourite(_ product: Product) {
+        guard let user = currentUser else { return }
+        if let index = user.favorites.index(of: product) {
+            let realm = try! Realm()
+            //realm.beginWrite()
+            try! realm.write {
+                user.favorites.remove(at: index)
+            }
+            
+            //try! realm.commitWrite()
+            //save(user: user)
+        }
     }
     
     public func addViewed(_ product: Product) {
         guard let user = currentUser else { return }
         user.lastViewed.append(product)
         save(user: user)
+    }
+    
+    public func isFavourite(_ product: Product) -> Bool {
+        guard let user = currentUser else { return false }
+        return user.favorites.contains(product)
     }
 }

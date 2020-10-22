@@ -126,15 +126,23 @@
                                                                     <constraint firstAttribute="height" constant="200" id="ppZ-2H-c0j"/>
                                                                 </constraints>
                                                             </imageView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="rL8-bc-L3P" userLabel="Attributes Stack">
+                                                                <rect key="frame" x="15" y="331.5" width="314" height="456.5"/>
+                                                                <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
+                                                            </stackView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="0.75152504280821919" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
+                                                            <constraint firstItem="rL8-bc-L3P" firstAttribute="leading" secondItem="UyF-WE-6X4" secondAttribute="leading" constant="15" id="0rd-Ma-bS0"/>
                                                             <constraint firstItem="hqs-Ez-agO" firstAttribute="centerX" secondItem="cPr-0i-UGj" secondAttribute="centerX" id="170-0f-w45"/>
                                                             <constraint firstItem="cPr-0i-UGj" firstAttribute="leading" secondItem="UyF-WE-6X4" secondAttribute="leading" constant="15" id="Dhs-qK-NjS"/>
                                                             <constraint firstItem="cPr-0i-UGj" firstAttribute="centerX" secondItem="UyF-WE-6X4" secondAttribute="centerX" id="Eaz-0d-agE"/>
                                                             <constraint firstItem="KHY-pd-dPw" firstAttribute="top" secondItem="hqs-Ez-agO" secondAttribute="bottom" constant="16" id="Eyb-ET-wpC"/>
+                                                            <constraint firstAttribute="trailing" secondItem="rL8-bc-L3P" secondAttribute="trailing" constant="15" id="GIs-5A-H48"/>
                                                             <constraint firstAttribute="trailing" secondItem="KHY-pd-dPw" secondAttribute="trailing" constant="52" id="J2R-OE-Pve"/>
                                                             <constraint firstAttribute="trailing" secondItem="cPr-0i-UGj" secondAttribute="trailing" constant="15" id="VJ2-8o-LTr"/>
+                                                            <constraint firstAttribute="bottom" secondItem="rL8-bc-L3P" secondAttribute="bottom" constant="30" id="anW-cw-INR"/>
+                                                            <constraint firstItem="rL8-bc-L3P" firstAttribute="top" secondItem="KHY-pd-dPw" secondAttribute="bottom" constant="25" id="d9h-ux-21Z"/>
                                                             <constraint firstItem="hqs-Ez-agO" firstAttribute="top" secondItem="cPr-0i-UGj" secondAttribute="bottom" constant="20" id="fAw-Jy-jlM"/>
                                                             <constraint firstItem="cPr-0i-UGj" firstAttribute="top" secondItem="UyF-WE-6X4" secondAttribute="top" constant="25" id="yLA-07-ydi"/>
                                                             <constraint firstItem="KHY-pd-dPw" firstAttribute="leading" secondItem="UyF-WE-6X4" secondAttribute="leading" constant="52" id="z7j-cz-aUQ"/>
@@ -212,6 +220,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="attributes" destination="rL8-bc-L3P" id="KmZ-tY-Y2R"/>
                         <outlet property="productTitle" destination="cPr-0i-UGj" id="9Rt-yY-Th4"/>
                         <outlet property="thumb" destination="KHY-pd-dPw" id="sqF-5P-MJl"/>
                         <outlet property="total" destination="hqs-Ez-agO" id="Xfn-gP-Wkt"/>
@@ -231,6 +240,9 @@
         </systemColor>
         <systemColor name="tertiaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tertiarySystemFillColor">
+            <color red="0.46274509803921571" green="0.46274509803921571" blue="0.50196078431372548" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -20,10 +20,12 @@ protocol NavigationBarDelegate {
 }
 
 final class NavigationBar: UINavigationBar {
-    @IBOutlet weak var lens: UIButton!
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var favoritesButton: UIButton!
-    @IBOutlet weak var home: UIButton!
+    //MARK: Outlets
+    @IBOutlet private weak var lens: UIButton!
+    @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet private weak var favoritesButton: UIButton!
+    @IBOutlet private weak var home: UIButton!
+    @IBOutlet private weak var homeRight: UIButton!
     //MARK: Members
     var customDelegate: NavigationBarDelegate?
     //MARK: Setup
@@ -46,12 +48,22 @@ final class NavigationBar: UINavigationBar {
     @IBAction func search() {
         lens.isHidden = true
         home.isHidden = false
+        homeRight.isHidden = true
+        favoritesButton.isHidden = false
         searchBar.isHidden = false
         searchBar.becomeFirstResponder()
         customDelegate?.sent(action: .search)
     }
 
     @IBAction func favorites() {
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        searchBar.isHidden = true
+        home.isHidden = true
+        lens.isHidden = false
+        favoritesButton.isHidden = true
+        homeRight.isHidden = false
+        customDelegate?.sent(action: .cleanQuery)
         customDelegate?.sent(action: .favorites)
     }
     
@@ -61,6 +73,8 @@ final class NavigationBar: UINavigationBar {
         searchBar.isHidden = true
         home.isHidden = true
         lens.isHidden = false
+        homeRight.isHidden = true
+        favoritesButton.isHidden = false
         customDelegate?.sent(action: .cleanQuery)
         customDelegate?.sent(action: .dashboard)
     }

@@ -13,6 +13,8 @@ public protocol UserManager: class {
     
     func logUser(with alias: String)
     func save(user: User, setCurrent: Bool)
-    func addFavorite(_ product: Product)
+    func addFavourite(_ product: Product)
+    func removeFavourite(_ product: Product)
     func addViewed(_ product: Product)
+    func isFavourite(_ product: Product) -> Bool
 }

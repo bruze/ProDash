@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="favoritesButton" destination="vua-8q-93J" id="4x9-vg-ECE"/>
                 <outlet property="home" destination="AUU-c9-O9Q" id="sPL-b8-tmp"/>
+                <outlet property="homeRight" destination="I0u-mN-qxe" id="BAg-te-IPH"/>
                 <outlet property="lens" destination="XnZ-gX-gik" id="YTT-fg-hGj"/>
                 <outlet property="searchBar" destination="lGN-il-GDc" id="u43-F6-Fl1"/>
             </connections>
@@ -19,7 +20,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AUU-c9-O9Q">
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AUU-c9-O9Q" userLabel="Left Home">
                     <rect key="frame" x="0.0" y="0.0" width="50" height="44"/>
                     <state key="normal" image="house.fill" catalog="system"/>
                     <connections>
@@ -44,6 +45,13 @@
                         <outlet property="delegate" destination="-1" id="F7e-T2-saF"/>
                     </connections>
                 </searchBar>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I0u-mN-qxe" userLabel="Right Home">
+                    <rect key="frame" x="364" y="0.0" width="50" height="44"/>
+                    <state key="normal" image="house.fill" catalog="system"/>
+                    <connections>
+                        <action selector="dashboard" destination="-1" eventType="touchUpInside" id="VlP-H6-Mf8"/>
+                    </connections>
+                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vua-8q-93J">
                     <rect key="frame" x="364" y="0.0" width="50" height="44"/>
                     <state key="normal" image="star.fill" catalog="system"/>
@@ -59,7 +67,9 @@
             <constraints>
                 <constraint firstItem="lGN-il-GDc" firstAttribute="leading" secondItem="XnZ-gX-gik" secondAttribute="trailing" id="2fD-XG-7m4"/>
                 <constraint firstAttribute="trailing" secondItem="vua-8q-93J" secondAttribute="trailing" id="4mJ-Kk-79m"/>
+                <constraint firstItem="I0u-mN-qxe" firstAttribute="top" secondItem="vua-8q-93J" secondAttribute="top" id="9eu-AP-wEQ"/>
                 <constraint firstItem="XnZ-gX-gik" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="9v4-pZ-kZb"/>
+                <constraint firstItem="I0u-mN-qxe" firstAttribute="trailing" secondItem="vua-8q-93J" secondAttribute="trailing" id="CXH-CK-qz3"/>
                 <constraint firstItem="AUU-c9-O9Q" firstAttribute="top" secondItem="XnZ-gX-gik" secondAttribute="top" id="GGj-PE-Wkn"/>
                 <constraint firstItem="lGN-il-GDc" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="HHc-0S-55u"/>
                 <constraint firstAttribute="bottom" secondItem="vua-8q-93J" secondAttribute="bottom" id="MU3-YS-uLS"/>
@@ -71,6 +81,8 @@
                 <constraint firstItem="XnZ-gX-gik" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="pK1-0j-In9"/>
                 <constraint firstItem="AUU-c9-O9Q" firstAttribute="trailing" secondItem="XnZ-gX-gik" secondAttribute="trailing" id="ppi-hx-ot9"/>
                 <constraint firstAttribute="bottom" secondItem="XnZ-gX-gik" secondAttribute="bottom" id="sWD-0f-Gle"/>
+                <constraint firstItem="I0u-mN-qxe" firstAttribute="leading" secondItem="vua-8q-93J" secondAttribute="leading" id="vSN-ZA-M0q"/>
+                <constraint firstItem="I0u-mN-qxe" firstAttribute="bottom" secondItem="vua-8q-93J" secondAttribute="bottom" id="vnq-9j-DHE"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="139" y="52"/>

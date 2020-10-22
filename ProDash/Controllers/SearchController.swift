@@ -10,14 +10,15 @@ import UIKit
 import Combine
 import Networking
 
+enum ProductsCollectionDisplay {
+    case grid
+    case list
+}
+
 final class SearchController: BaseViewController, ControllerType, FlowStarter {
     enum ActivityIndicatorPosition {
         case bottom
         case middle
-    }
-    enum ProductsCollectionDisplay {
-        case grid
-        case list
     }
     
     static let identifier = "Search"

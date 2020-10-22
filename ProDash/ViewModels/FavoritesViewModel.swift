@@ -1,28 +1,21 @@
 //
-//  SearchViewModel.swift
+//  FavoritesViewModel.swift
 //  ProDash
 //
-//  Created by Bruno Garelli on 10/20/20.
+//  Created by Bruno Garelli on 10/22/20.
 //
 
 import Combine
 import Model
 import UIKit
 
-typealias DataSource = UICollectionViewDiffableDataSource<Int, Product>
-typealias Snapshot = NSDiffableDataSourceSnapshot<Int, Product>
-
-final class SearchViewModel {
+final class FavoritesViewModel {
     //MARK: Members
     private var services: ServiceLocator?
-    private var productsEndpoint = SearchProductsEndpoint()
-    private var pagination = ProductPagination()
     private var dataSource: DataSource!
     private var products = [Product]()
-    var fetchingEnded = CurrentValueSubject<Void?, Never>(nil)
     var productsHeaderAction = CurrentValueSubject<ProductsHeaderAction?, Never>(nil)
     var selectedProduct = CurrentValueSubject<Product?, Never>(nil)
-    var error = CurrentValueSubject<Error?, Never>(nil)
     //MARK: Setup
     init(services: ServiceLocator?, collection: UICollectionView) {
         self.services = services
@@ -44,6 +37,15 @@ final class SearchViewModel {
             return header
         }
     }
+    
+    func fetch() {
+        products.removeAll()
+        if let favorites = services?.userManager.currentUser?.favorites {
+            products.append(contentsOf: Array(favorites))
+            applySnapshot()
+        }
+    }
+    
     //MARK: Action
     func applySnapshot() {
         var snapshot = Snapshot()
@@ -51,55 +53,15 @@ final class SearchViewModel {
         snapshot.appendItems(products)
         dataSource.apply(snapshot, animatingDifferences: true)
     }
-    
-    private func fetch() {
-        services?.networkRouter.fetch(productsEndpoint, completion: {[weak self] objects, paginationInfo, error in
-            defer { self?.fetchingEnded.value = () }
-            guard let self = self else { return }
-            if let error = error { /// Error found => Alert
-                self.error.value = error
-            } else { /// Process response
-                if let pages = paginationInfo { self.pagination = pages }
-                if let products = objects as? [Product] {
-                    self.products.append(contentsOf: products)
-                    DispatchQueue.main.async {
-                        self.applySnapshot()
-                    }
-                }
-            }
-        })
-    }
-    
-    func update(query: String) {
-        products.removeAll()
-        productsEndpoint.query = query
-        fetch()
-    }
-    
-    func canFetchMoreProducts() -> Bool {
-        return pagination.offset + pagination.limit < min(pagination.total, .maxFetchedProductsWithoutToken)
-    }
-    
-    func fetchMoreProducts() {
-        productsEndpoint.offset += pagination.limit
-        fetch()
-    }
-    
-    func cleanQuery() {
-        productsEndpoint.query = ""
-        products.removeAll()
-        pagination = ProductPagination()
-        applySnapshot()
-    }
 }
 
-extension SearchViewModel: ProductsHeaderDelegate {
+extension FavoritesViewModel: ProductsHeaderDelegate {
     func sent(action: ProductsHeaderAction) {
         productsHeaderAction.value = action
     }
 }
 
-extension SearchViewModel: ProductCellDelegate {
+extension FavoritesViewModel: ProductCellDelegate {
     func isFavourite(_ product: Product) -> Bool {
         services?.userManager.isFavourite(product) ?? false
     }

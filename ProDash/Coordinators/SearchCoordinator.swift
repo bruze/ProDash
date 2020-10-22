@@ -14,7 +14,7 @@ final class SearchCoordinator: NSObject, Coordinator {
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     var services: ServiceLocator?
-    var parentCoordinator: DashboardCoordinator?
+    weak var parentCoordinator: DashboardCoordinator?
     //MARK: Setup
     init(navigationController: UINavigationController, services: ServiceLocator?) {
         self.navigationController = navigationController
