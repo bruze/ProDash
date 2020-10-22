@@ -18,15 +18,17 @@ final class SearchViewModel {
     private var productsEndpoint = SearchProductsEndpoint()
     private var pagination = ProductPagination()
     private var dataSource: DataSource!
-    private var products = [Product]()
+    /*private*/ var products = [Product]()
     var fetchingEnded = CurrentValueSubject<Void?, Never>(nil)
     var productsHeaderAction = CurrentValueSubject<ProductsHeaderAction?, Never>(nil)
+    var selectedProduct = CurrentValueSubject<Product?, Never>(nil)
     //MARK: Setup
     init(services: ServiceLocator?, collection: UICollectionView) {
         self.services = services
         self.dataSource = DataSource(collectionView: collection, cellProvider: { collection, index, product -> UICollectionViewCell? in
             let cell = collection.dequeueReusableCell(withReuseIdentifier: ProductCell.identifier, for: index) as? ProductCell
             cell?.product = product
+            cell?.delegate = self
             return cell
         })
         self.dataSource.supplementaryViewProvider = {[weak self] collectionView, kind, indexPath in
@@ -70,7 +72,7 @@ final class SearchViewModel {
     }
     
     func canFetchMoreProducts() -> Bool {
-        return pagination.offset + pagination.limit <= min(pagination.total, .maxFetchedProductsWithoutToken)
+        return pagination.offset + pagination.limit < min(pagination.total, .maxFetchedProductsWithoutToken)
     }
     
     func fetchMoreProducts() {
@@ -89,5 +91,11 @@ final class SearchViewModel {
 extension SearchViewModel: ProductsHeaderDelegate {
     func sent(action: ProductsHeaderAction) {
         productsHeaderAction.value = action
+    }
+}
+
+extension SearchViewModel: ProductCellDelegate {
+    func didSelect(_ product: Product) {
+        selectedProduct.value = product
     }
 }

@@ -9,9 +9,14 @@ import UIKit
 import Model
 import Kingfisher
 
+protocol ProductCellDelegate {
+    func didSelect(_ product: Product)
+}
+
 final class ProductCell: UICollectionViewCell {
     static let identifier = "ProductCell"
     
+    var delegate: ProductCellDelegate?
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var thumb: UIImageView!
     var product: Product? {
@@ -25,6 +30,12 @@ final class ProductCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        guard let product = product else { return }
+        delegate?.didSelect(product)
     }
 
 }

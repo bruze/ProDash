@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Model
 
 final class SearchCoordinator: NSObject, Coordinator {
     //MARK: Members
@@ -29,5 +30,13 @@ final class SearchCoordinator: NSObject, Coordinator {
         }
     }
     
-    
+    func showDetail(for product: Product) {
+        if let vc = ProductDetailController.create(services) {
+            vc.loadView()
+            vc.product = product
+            vc.coordinator = self
+            vc.modalPresentationStyle = .pageSheet
+            navigationController.present(vc, animated: true, completion: nil)
+        }
+    }
 }

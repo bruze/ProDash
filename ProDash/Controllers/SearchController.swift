@@ -33,13 +33,15 @@ final class SearchController: BaseViewController, ControllerType, FlowStarter {
     private lazy var model = SearchViewModel(services: coordinator?.services, collection: products)
     private var cancellables = Set<AnyCancellable>()
     private var productsDisplay = ProductsCollectionDisplay.list
+    private var productsLayout: UICollectionViewFlowLayout? { products.collectionViewLayout as? UICollectionViewFlowLayout }
     //MARK: Setup
     override func viewDidLoad() {
         super.viewDidLoad()
-        products.contentInset = .init(top: 0, left: 0, bottom: 15, right: 0)
+        products.contentInset = .init(top: 0, left: 0, bottom: 30, right: 0)
         products.delegate = self
         products.register(UINib(nibName: ProductCell.identifier, bundle: nil), forCellWithReuseIdentifier: ProductCell.identifier)
         products.register(UINib(nibName: ProductsHeader.identifier, bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProductsHeader.identifier)
+        productsLayout?.sectionHeadersPinToVisibleBounds = true
         bindModel()
     }
     
@@ -60,10 +62,15 @@ final class SearchController: BaseViewController, ControllerType, FlowStarter {
             default: break
             }
         }.store(in: &cancellables)
+        model.selectedProduct.sink {[weak self] product in
+            guard let self = self, let product = product else { return }
+            self.coordinator?.showDetail(for: product)
+        }.store(in: &cancellables)
     }
     
     //MARK: Action
     func query(_ text: String) {
+        products.isHidden = false
         setActivityIndicator(at: .middle)
         showActivityIndicator()
         model.update(query: text)
@@ -79,6 +86,7 @@ final class SearchController: BaseViewController, ControllerType, FlowStarter {
     
     func cleanQuery() {
         model.cleanQuery()
+        products.isHidden = true
     }
     //MARK: Update
     private func showActivityIndicator() {
@@ -102,6 +110,10 @@ final class SearchController: BaseViewController, ControllerType, FlowStarter {
             activityIndicatorAtMiddle.isActive = true
             activityIndicatorAtBottom.isActive = false
         }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        productsLayout?.invalidateLayout()
     }
 }
 

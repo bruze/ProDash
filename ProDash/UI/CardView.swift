@@ -9,6 +9,18 @@ import UIKit
 
 @IBDesignable class CardView: UIView {
     
+    @IBInspectable var borderWidth: CGFloat = 0.0 {
+        didSet {
+            refreshUI()
+        }
+    }
+    
+    @IBInspectable public var borderColor: UIColor = .clear {
+        didSet {
+            refreshUI()
+        }
+    }
+    
     @IBInspectable var cornerRadius: CGFloat = 5.0 {
         didSet {
             refreshUI()
@@ -48,6 +60,8 @@ import UIKit
     }
     
     func refreshUI() {
+        self.layer.borderWidth = borderWidth
+        self.layer.borderColor = borderColor.cgColor
         self.layer.cornerRadius = cornerRadius
         self.layer.shadowColor = shadowColor.cgColor
         self.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
