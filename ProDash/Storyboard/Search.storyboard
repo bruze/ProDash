@@ -27,7 +27,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells/>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" preservesSuperviewLayoutMargins="YES" reuseIdentifier="ProductsHeader" translatesAutoresizingMaskIntoConstraints="NO" id="AtM-gJ-VoX" customClass="ProductsHeader" customModule="ProDash" customModuleProvider="target">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" reuseIdentifier="ProductsHeader" translatesAutoresizingMaskIntoConstraints="NO" id="AtM-gJ-VoX" customClass="ProductsHeader" customModule="ProDash" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="404" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <viewLayoutGuide key="safeArea" id="dee-XI-Fba"/>

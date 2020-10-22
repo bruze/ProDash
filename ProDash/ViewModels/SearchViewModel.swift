@@ -22,6 +22,7 @@ final class SearchViewModel {
     var fetchingEnded = CurrentValueSubject<Void?, Never>(nil)
     var productsHeaderAction = CurrentValueSubject<ProductsHeaderAction?, Never>(nil)
     var selectedProduct = CurrentValueSubject<Product?, Never>(nil)
+    var error = CurrentValueSubject<Error?, Never>(nil)
     //MARK: Setup
     init(services: ServiceLocator?, collection: UICollectionView) {
         self.services = services
@@ -55,11 +56,15 @@ final class SearchViewModel {
         services?.networkRouter.fetch(productsEndpoint, completion: {[weak self] objects, paginationInfo, error in
             defer { self?.fetchingEnded.value = () }
             guard let self = self else { return }
-            if let pages = paginationInfo { self.pagination = pages }
-            if let products = objects as? [Product] {
-                self.products.append(contentsOf: products)
-                DispatchQueue.main.async {
-                    self.applySnapshot()
+            if let error = error { /// Error found => Alert
+                self.error.value = error
+            } else { /// Process response
+                if let pages = paginationInfo { self.pagination = pages }
+                if let products = objects as? [Product] {
+                    self.products.append(contentsOf: products)
+                    DispatchQueue.main.async {
+                        self.applySnapshot()
+                    }
                 }
             }
         })

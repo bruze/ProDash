@@ -66,6 +66,17 @@ final class SearchController: BaseViewController, ControllerType, FlowStarter {
             guard let self = self, let product = product else { return }
             self.coordinator?.showDetail(for: product)
         }.store(in: &cancellables)
+        model.error.sink {[weak self] error in
+            guard let self = self, let error = error else { return }
+            DispatchQueue.main.async {
+                switch error {
+                case NetworkError.networkOffline:
+                    self.presentMessage("Error", "Lo sentimos, parece que tu conexión no está disponible. Por favor chequea que tengas acceso a internet e intenta nuevamente. Gracias")
+                default:
+                    self.presentMessage("Error", "Lo sentimos, parece que hubo un error al procesar tu solicitud; por favor intenta nuevamente. Gracias")
+                }
+            }
+        }.store(in: &cancellables)
     }
     
     //MARK: Action

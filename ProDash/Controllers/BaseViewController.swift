@@ -17,6 +17,12 @@ class BaseViewController: UIViewController, Describable {
         services?.logger.message("\(logDescription) did load", as: .info)
     }
 
-
+    func presentMessage(_ title: String, _ message: String) {
+        let alertController = UIAlertController(title: title,
+                                                message: message,
+                                                preferredStyle: .alert)
+        alertController.addAction(.init(title: "OK", style: .default, handler: nil))
+        present(alertController, animated: true)
+    }
 }
 

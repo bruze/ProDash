@@ -29,5 +29,27 @@ class NetworkingTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    struct TestEndpoint: Endpoint {
+        let url: URL? = URL(string: "https://www.mercadolibre.com.uy")
+        let path = ""
+        let method: HTTPMethod = .get
+        var task: HTTPTask {
+            return .requestParameters(bodyParameters: nil, urlParameters: nil)
+        }
+        var headers: HTTPHeaders?
+    }
+    
+    func testURLSessionRouter() {
+        let router = URLSessionRouter()
+        let endpoint = TestEndpoint()
+        let expect = expectation(description: "Server responds to request")
+        router.request(endpoint) { data, response, error in
+            if data != nil, error == nil {
+                expect.fulfill()
+            }
+        }
+        waitForExpectations(timeout: 2.0, handler: nil)
+    }
 
 }

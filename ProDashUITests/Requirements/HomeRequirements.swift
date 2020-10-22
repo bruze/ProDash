@@ -12,9 +12,6 @@ protocol HomeRequirements {
 }
 
 extension HomeRequirements {
-    func givenTheAppIsLaunched() {
-        XCUIApplication().launch()
-    }
     
     func testNavigationBarIsHidden() {
         let bars = XCUIApplication().navigationBars
