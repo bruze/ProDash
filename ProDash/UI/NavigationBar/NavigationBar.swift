@@ -13,6 +13,7 @@ enum NavigationBarAction {
     case dashboard
     case query(text: String)
     case cleanQuery
+    case profile
 }
 
 protocol NavigationBarDelegate {
@@ -26,6 +27,7 @@ final class NavigationBar: UINavigationBar {
     @IBOutlet private weak var favoritesButton: UIButton!
     @IBOutlet private weak var home: UIButton!
     @IBOutlet private weak var homeRight: UIButton!
+    @IBOutlet weak var profile: UIButton!
     //MARK: Members
     var customDelegate: NavigationBarDelegate?
     //MARK: Setup
@@ -51,6 +53,7 @@ final class NavigationBar: UINavigationBar {
         homeRight.isHidden = true
         favoritesButton.isHidden = false
         searchBar.isHidden = false
+        profile.isHidden = true
         searchBar.becomeFirstResponder()
         customDelegate?.sent(action: .search)
     }
@@ -63,6 +66,7 @@ final class NavigationBar: UINavigationBar {
         lens.isHidden = false
         favoritesButton.isHidden = true
         homeRight.isHidden = false
+        profile.isHidden = false
         customDelegate?.sent(action: .cleanQuery)
         customDelegate?.sent(action: .favorites)
     }
@@ -75,8 +79,13 @@ final class NavigationBar: UINavigationBar {
         lens.isHidden = false
         homeRight.isHidden = true
         favoritesButton.isHidden = false
+        profile.isHidden = false
         customDelegate?.sent(action: .cleanQuery)
         customDelegate?.sent(action: .dashboard)
+    }
+    
+    @IBAction func manageProfile() {
+        customDelegate?.sent(action: .profile)
     }
 }
 

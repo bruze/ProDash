@@ -25,6 +25,7 @@ public final class RealmUserManager: UserManager {
                 return User()
             }
             if let registered: User = repository.get(alias, User.self) {
+                registered.set(state: .logged)
                 return registered
             } else {
                 let newUser = User()
@@ -35,6 +36,10 @@ public final class RealmUserManager: UserManager {
             }
         }()
         NotificationCenter.default.post(name: .userLogged, object: nil)
+    }
+    
+    public func logout() {
+        currentUser = User()
     }
     
     public func save(user: User, setCurrent: Bool = false) {
@@ -78,6 +83,8 @@ public final class RealmUserManager: UserManager {
     
     public func isFavourite(_ product: Product) -> Bool {
         guard let user = currentUser else { return false }
-        return user.favorites.contains(product)
+        let ids = Array(user.favorites).map({ $0.productId })
+        //let found = user.favorites.filter({ $0.productId == product.productId }).first
+        return ids.contains(product.productId)
     }
 }

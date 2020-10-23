@@ -75,6 +75,15 @@ extension DashboardCoordinator: NavigationBarDelegate {
             if let searchController = dashboardController?.getContainedController(SearchController.self) {
                 searchController.cleanQuery()
             }
+        case .profile:
+            if let vc = ProfileController.create(services) {
+                vc.loadView()
+                vc.coordinator = self
+                vc.modalPresentationStyle = .pageSheet
+                navigationController.present(vc, animated: true, completion: nil)
+                vc.viewDidLoad()
+            }
+            break
         }
     }
 }

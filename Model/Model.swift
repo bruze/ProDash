@@ -17,7 +17,11 @@ public extension Model {
         let mirror = Mirror.init(reflecting: instance)
         mirror.children.forEach({
             if let label = $0.label, let value = parameters[label] {
-                instance.setValue(value, forKey: label)
+                if label == "id" {
+                    instance.setValue(value, forKey: "productId")
+                } else {
+                    instance.setValue(value, forKey: label)
+                }
             }
         })
         return instance

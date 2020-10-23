@@ -23,6 +23,7 @@ final class FavoritesViewModel {
             let cell = collection.dequeueReusableCell(withReuseIdentifier: ProductCell.identifier, for: index) as? ProductCell
             cell?.product = product
             cell?.delegate = self
+            cell?.favouriteButton.isHidden = true
             return cell
         })
         self.dataSource.supplementaryViewProvider = {[weak self] collectionView, kind, indexPath in
@@ -63,15 +64,16 @@ extension FavoritesViewModel: ProductsHeaderDelegate {
 
 extension FavoritesViewModel: ProductCellDelegate {
     func isFavourite(_ product: Product) -> Bool {
-        services?.userManager.isFavourite(product) ?? false
+        //services?.userManager.isFavourite(product) ?? false
+        true
     }
     
     func addedFavourite(_ product: Product) {
-        services?.userManager.addFavourite(product)
+        //services?.userManager.addFavourite(product)
     }
     
     func removedFavourite(_ product: Product) {
-        services?.userManager.removeFavourite(product)
+        //services?.userManager.removeFavourite(product)
     }
     
     func didSelect(_ product: Product) {

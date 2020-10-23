@@ -45,11 +45,11 @@ Puedes usar un alias para guardar tus favoritos o ingresar como invitado</string
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Np5-aA-bqO" customClass="RoundButton" customModule="ProDash" customModuleProvider="target">
-                                                <rect key="frame" x="176" y="214.5" width="62" height="30"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <rect key="frame" x="167" y="214.5" width="80" height="30"/>
+                                                <color key="backgroundColor" red="1" green="0.65097923800000002" blue="0.2352579195" alpha="1" colorSpace="calibratedRGB"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="login"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="46" id="NMd-Aq-sQx"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="NMd-Aq-sQx"/>
                                                     <constraint firstAttribute="height" constant="30" id="rjt-tR-GAz"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
@@ -69,11 +69,11 @@ Puedes usar un alias para guardar tus favoritos o ingresar como invitado</string
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fD-uW-HR9" customClass="RoundButton" customModule="ProDash" customModuleProvider="target">
-                                                <rect key="frame" x="176.5" y="274.5" width="61" height="30"/>
+                                                <rect key="frame" x="167" y="274.5" width="80" height="30"/>
                                                 <color key="backgroundColor" red="1" green="0.65097923800000002" blue="0.2352579195" alpha="1" colorSpace="calibratedRGB"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="skip"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="46" id="7Uq-9X-gf6"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="7Uq-9X-gf6"/>
                                                     <constraint firstAttribute="height" constant="30" id="yQH-D1-QTq"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>

@@ -31,6 +31,9 @@ final class ProductCell: UICollectionViewCell {
             guard let product = product else { return }
             title.text = product.title
             thumb.kf.setImage(with: URL(string: product.thumbnail))
+            isFavourite = delegate?.isFavourite(product) ?? false
+            favouriteButton.setImage(isFavourite ? favouriteImage: notFavouriteImage, for: .normal)
+            setNeedsDisplay()
         }
     }
     //MARK: Setup

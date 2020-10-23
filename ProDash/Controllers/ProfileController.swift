@@ -1,31 +1,29 @@
 //
-//  HomeController.swift
+//  ProfileController.swift
 //  ProDash
 //
-//  Created by Bruno Garelli on 10/15/20.
+//  Created by Bruno Garelli on 10/23/20.
 //
 
-import Model
 import UIKit
 import Combine
 
-final class HomeController: BaseViewController, ControllerType, FlowStarter {
+final class ProfileController: BaseViewController, ControllerType {
     //MARK: Members
-    weak var coordinator: HomeCoordinator?
-    private lazy var model = HomeViewModel(services: coordinator?.services)
-    var anyCoordinator: Any? { coordinator }
-    static let storyboardId = "Home"
-    static let identifier = "Home"
+    static let identifier = "Profile"
+    static let storyboardId = "Profile"
+    private lazy var model = ProfileViewModel(services: coordinator?.services)
+    var coordinator: DashboardCoordinator?
     private lazy var aliasInputObserver = NotificationCenter.default
         .publisher(for: UITextField.textDidChangeNotification, object: alias)
     private lazy var loginEnabledSubscriber = Subscribers.Assign(object: login, keyPath: \.isEnabled)
-    //private lazy var loginTapObserver = UIButton.Publisher<Base>
     //MARK: Outlets
     @IBOutlet weak var alias: UITextField!
     @IBOutlet weak var login: RoundButton!
-    @IBOutlet weak var guest: RoundButton!
+    @IBOutlet weak var logout: UIButton!
     /// Binding
     private var aliasObserver: AnyCancellable?
+    private var cancellables = Set<AnyCancellable>()
     //MARK: Setup
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,13 +42,22 @@ final class HomeController: BaseViewController, ControllerType, FlowStarter {
         aliasInputObserver
             .compactMap({ !(($0.object as? UITextField)?.text?.isEmpty ?? true) })
             .subscribe(loginEnabledSubscriber)
+        model.userLogged.sink {[weak self] userLogged in
+            guard let self = self, let userLogged = userLogged else { return }
+            if userLogged {
+                self.alias.isHidden = true
+                self.login.isHidden = true
+            }
+        }.store(in: &cancellables)
     }
     //MARK: Action
     @IBAction func loginTap() {
         model.login()
+        dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func guestTap() {
-        model.login()
+    @IBAction func logoutTap() {
+        services?.userManager.logout()
+        dismiss(animated: true, completion: nil)
     }
 }

@@ -12,6 +12,7 @@ public protocol UserManager: class {
     var currentUser: User? { get }
     
     func logUser(with alias: String)
+    func logout()
     func save(user: User, setCurrent: Bool)
     func addFavourite(_ product: Product)
     func removeFavourite(_ product: Product)

@@ -49,12 +49,12 @@
 		<key>Logging.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>15</integer>
+			<integer>13</integer>
 		</dict>
 		<key>Model.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>13</integer>
+			<integer>16</integer>
 		</dict>
 		<key>Networking.xcscheme_^#shared#^_</key>
 		<dict>
@@ -64,7 +64,7 @@
 		<key>Persistence.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>16</integer>
+			<integer>15</integer>
 		</dict>
 		<key>ProDash.xcscheme_^#shared#^_</key>
 		<dict>

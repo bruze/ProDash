@@ -12,6 +12,7 @@
                 <outlet property="home" destination="AUU-c9-O9Q" id="sPL-b8-tmp"/>
                 <outlet property="homeRight" destination="I0u-mN-qxe" id="BAg-te-IPH"/>
                 <outlet property="lens" destination="XnZ-gX-gik" id="YTT-fg-hGj"/>
+                <outlet property="profile" destination="oCh-ha-ZPk" id="gWL-3O-Ugc"/>
                 <outlet property="searchBar" destination="lGN-il-GDc" id="u43-F6-Fl1"/>
             </connections>
         </placeholder>
@@ -36,6 +37,16 @@
                     <state key="normal" image="magnifyingglass.circle" catalog="system"/>
                     <connections>
                         <action selector="search" destination="-1" eventType="touchUpInside" id="pGR-hs-Zeh"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oCh-ha-ZPk" userLabel="Profile">
+                    <rect key="frame" x="182" y="0.0" width="50" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="dcZ-TO-iQ2"/>
+                    </constraints>
+                    <state key="normal" image="person.fill" catalog="system"/>
+                    <connections>
+                        <action selector="manageProfile" destination="-1" eventType="touchUpInside" id="2hQ-vu-qOl"/>
                     </connections>
                 </button>
                 <searchBar hidden="YES" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="lGN-il-GDc">
@@ -70,19 +81,23 @@
                 <constraint firstItem="I0u-mN-qxe" firstAttribute="top" secondItem="vua-8q-93J" secondAttribute="top" id="9eu-AP-wEQ"/>
                 <constraint firstItem="XnZ-gX-gik" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="9v4-pZ-kZb"/>
                 <constraint firstItem="I0u-mN-qxe" firstAttribute="trailing" secondItem="vua-8q-93J" secondAttribute="trailing" id="CXH-CK-qz3"/>
+                <constraint firstItem="oCh-ha-ZPk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="EJb-KR-AjY"/>
                 <constraint firstItem="AUU-c9-O9Q" firstAttribute="top" secondItem="XnZ-gX-gik" secondAttribute="top" id="GGj-PE-Wkn"/>
                 <constraint firstItem="lGN-il-GDc" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="HHc-0S-55u"/>
+                <constraint firstAttribute="bottom" secondItem="oCh-ha-ZPk" secondAttribute="bottom" id="Kup-Cx-GNv"/>
                 <constraint firstAttribute="bottom" secondItem="vua-8q-93J" secondAttribute="bottom" id="MU3-YS-uLS"/>
                 <constraint firstItem="vua-8q-93J" firstAttribute="leading" secondItem="lGN-il-GDc" secondAttribute="trailing" id="NTM-x4-xx4"/>
                 <constraint firstItem="AUU-c9-O9Q" firstAttribute="leading" secondItem="XnZ-gX-gik" secondAttribute="leading" id="Qgl-wZ-gWQ"/>
                 <constraint firstItem="AUU-c9-O9Q" firstAttribute="bottom" secondItem="XnZ-gX-gik" secondAttribute="bottom" id="bMg-Hx-HbL"/>
                 <constraint firstItem="vua-8q-93J" firstAttribute="width" secondItem="XnZ-gX-gik" secondAttribute="width" id="cVQ-KZ-2QN"/>
                 <constraint firstItem="vua-8q-93J" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="hyq-sz-SoN"/>
+                <constraint firstItem="oCh-ha-ZPk" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="mZT-hk-yGF"/>
                 <constraint firstItem="XnZ-gX-gik" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="pK1-0j-In9"/>
                 <constraint firstItem="AUU-c9-O9Q" firstAttribute="trailing" secondItem="XnZ-gX-gik" secondAttribute="trailing" id="ppi-hx-ot9"/>
                 <constraint firstAttribute="bottom" secondItem="XnZ-gX-gik" secondAttribute="bottom" id="sWD-0f-Gle"/>
                 <constraint firstItem="I0u-mN-qxe" firstAttribute="leading" secondItem="vua-8q-93J" secondAttribute="leading" id="vSN-ZA-M0q"/>
                 <constraint firstItem="I0u-mN-qxe" firstAttribute="bottom" secondItem="vua-8q-93J" secondAttribute="bottom" id="vnq-9j-DHE"/>
+                <constraint firstItem="oCh-ha-ZPk" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="zeM-eV-QRZ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="139" y="52"/>
@@ -91,6 +106,7 @@
     <resources>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="magnifyingglass.circle" catalog="system" width="128" height="121"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
     </resources>
 </document>
